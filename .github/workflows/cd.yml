@@ -26,6 +26,7 @@ jobs:
         with:
           script: |
             core.setOutput('name', `ghcr.io/${process.env.GITHUB_REPOSITORY.toLowerCase()}`)
+            core.setOutput('short_sha', context.payload.workflow_run.head_sha.slice(0, 12))
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -46,4 +47,4 @@ jobs:
           cache-to: type=gha,mode=max,scope=nestjs-docker
           tags: |
             ${{ steps.image.outputs.name }}:latest
-            ${{ steps.image.outputs.name }}:${{ github.event.workflow_run.head_sha }}
+            ${{ steps.image.outputs.name }}:${{ steps.image.outputs.short_sha }}
