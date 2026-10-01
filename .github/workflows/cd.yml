@@ -23,7 +23,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::127228003651:role/github-actions-ecr-push
+          role-to-assume: arn:aws:iam::127228003651:role/NestJSRole
           aws-region: us-east-1   # change to your region
 
       - name: Login to Amazon ECR
